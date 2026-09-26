@@ -1,24 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { CommandCenter } from "@/components/command-center";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Command Center — Autonomous AI Data Engineer" },
+      { name: "description", content: "Monitor enterprise data pipelines, autonomous recovery, infrastructure health, and governed AI operations." },
+      { property: "og:title", content: "Command Center — Autonomous AI Data Engineer" },
+      { property: "og:description", content: "A private control plane for production pipelines, deterministic validation, and autonomous recovery." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: CommandCenter,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
